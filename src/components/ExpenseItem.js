@@ -1,11 +1,21 @@
-function ExpenseItem(){
+import './ExpenseItem.css'
+function ExpenseItem(props){
+    // console.log(props)
+    // const expenseDate=new Date();
+    // const expenseTitle='Car Insurance';
+    // const expensePrice =294.5;
     return (
+        <div key={props.id} className="expense-item" >
         <div>
-             <ol> Expense Item
-       <li>Food Rs 10</li>
-       <li>Petrol Rs 100</li>
-      <li>Movies Rs 200</li> 
-       </ol>
+            <div>{props.date.toLocaleString('en-US',{month:'long'})}</div>
+            <div>Year</div>
+            <div>Day</div>
+        </div>
+        <div className="expense-item__description">
+            <h2>{props.title}</h2>
+            <div className="expense-item__price">${props.amount}</div>
+        </div>
+    
         </div>
     )
 }
