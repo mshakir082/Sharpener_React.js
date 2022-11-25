@@ -1,5 +1,6 @@
 import React from 'react'
 import Expense from "./components/Expenses/Expense";
+import ExpenseForm from './components/Expenses/ExpenseForm'
 function App() {
  
   // return React.createElement('div',{},
@@ -8,8 +9,12 @@ function App() {
 
   return (
     <div>
-    <h2>let's Stated</h2>
+    <div><ExpenseForm/></div>
+    <br/> <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    <div>
     <Expense/>
+    </div>
+    
     </div>
   );
 }
