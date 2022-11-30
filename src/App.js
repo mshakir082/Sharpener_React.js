@@ -4,9 +4,10 @@ import ExpenseForm from './components/Expenses/ExpenseForm'
 import NewExpense from './components/NewExpense/NewExpense';
 function App() {
  
-  // return React.createElement('div',{},
-  // React.createElement('h2',{},"let's Stated"),
-  // React.createElement(Expense,{}));
+  const addExpenseHandler = expense => {
+    console.log('In App.js');
+    console.log(expense);
+  };
 
   return (
     <div>
@@ -16,6 +17,7 @@ function App() {
     <Expense/>
     </div> */}
     <NewExpense/>
+    <NewExpense onAddExpense ={addExpenseHandler} />
     </div>
   );
 }
