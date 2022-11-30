@@ -1,6 +1,7 @@
 import React from 'react'
 import Expense from "./components/Expenses/Expense";
 import ExpenseForm from './components/Expenses/ExpenseForm'
+import NewExpense from './components/NewExpense/NewExpense';
 function App() {
  
   // return React.createElement('div',{},
@@ -9,12 +10,12 @@ function App() {
 
   return (
     <div>
-    <div><ExpenseForm/></div>
+    {/* <div><ExpenseForm/></div>
     <br/> <br/><br/><br/><br/><br/><br/><br/><br/><br/>
     <div>
     <Expense/>
-    </div>
-    
+    </div> */}
+    <NewExpense/>
     </div>
   );
 }
