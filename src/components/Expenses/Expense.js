@@ -1,19 +1,29 @@
-import ExpenseItem from "./ExpenseItem";
-import './Expense.css'
-import Card from '../UI/Card'
-const Expense = () =>{
-    const expenses = [
-        { id:'1',title: "Car Insurance", amount: 294.5, date: new Date(2021, 2, 28) },
-        { id:'2',title: "bike Insurance", amount: 894.5, date: new Date(2021, 2, 28) },
-        {id:'3', title: "bycycle Insurance", amount: 594.5, date: new Date(2021, 2, 28) },
-        { id:'4',title: "houses Insurance", amount: 494.5, date: new Date(2021, 2, 28) },
-      ];
-    return (
-        <>
-            <Card className='expense'>
-              {expenses.map((el)=>(<ExpenseItem id={el.id} title={el.title} amount={el.amount} date={el.date}/>))}
-            </Card>
-        </>
-    )
-}
-export default Expense;
+import React, { useState } from 'react';
+
+import ExpenseItem from './ExpenseItem';
+import Card from '../UI/Card';
+import ExpensesFilter from './ExpensesFilter';
+import './Expenses.css';
+
+const Expenses = (props) => {
+  const [filteredYear, setFilteredYear] = useState('2020');
+
+  const filterChangeHandler = selectedYear => {
+    setFilteredYear(selectedYear);
+  };
+
+  return (
+    <div>
+      <Card className='expenses'>
+        <ExpensesFilter selected={filteredYear} onChangeFilter={filterChangeHandler} />
+        {props.items.map(expense => (
+          <ExpenseItem title={expense.title}
+            amount={expense.amount}
+            date={expense.date} />
+        ))}
+      </Card>
+    </div>
+  );
+};
+
+export default Expenses;

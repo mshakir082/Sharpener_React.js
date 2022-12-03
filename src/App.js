@@ -1,25 +1,47 @@
-import React from 'react'
-import Expense from "./components/Expenses/Expense";
-import ExpenseForm from './components/Expenses/ExpenseForm'
+import React, { useState } from 'react';
 import NewExpense from './components/NewExpense/NewExpense';
-function App() {
- 
-  const addExpenseHandler = expense => {
-    console.log('In App.js');
-    console.log(expense);
-  };
+import Expenses from './components/Expenses/Expenses';
 
-  return (
+const dummyexpenese = [
+  {
+    id: 'e1',
+    title: 'Cooler',
+    amount: 4500,
+    date: new Date(2022, 1, 14),
+  },
+  { 
+    id: 'e2',
+     title: 'New TV', 
+     amount: 5500,
+      date: new Date(2022, 2, 15),
+     },
+  {
+    id: 'e3',
+    title: 'Freez',
+    amount: 3200,
+    date: new Date(2022, 3, 16),
+  },
+  {
+    id: 'e4',
+    title: 'Desk',
+    amount: 2100,
+    date: new Date(2022, 4, 17),
+  },
+];
+const App = () => {
+
+  const [expenses, setExpenses] = useState(dummyexpenese);
+
+  const addExpenseHandler = expense => {
+   setExpenses( prevExpense => {
+    return [expense, ...prevExpense] }
+    )
+  };
+return (
     <div>
-    {/* <div><ExpenseForm/></div>
-    <br/> <br/><br/><br/><br/><br/><br/><br/><br/><br/>
-    <div>
-    <Expense/>
-    </div> */}
-    <NewExpense/>
-    <NewExpense onAddExpense ={addExpenseHandler} />
+      <NewExpense onAddExpense={addExpenseHandler} />
+      <Expenses items={expenses} />
     </div>
   );
 }
-
 export default App;

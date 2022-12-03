@@ -1,36 +1,62 @@
-import React from 'react'
+import React, { useState } from "react";
+import './ExpenseForm.css';
 
-const ExpenseForm = () => {
-
-    const FormStyle = {
-        border: '1px solid red',
-        position: 'absolute',
-        width: '25%',
-        height: '30%',
-        top: '20%',
-        left: '50%',
-        transform:'translate(-50%,-50%)',
-        textAlign: 'left',
-        padding: '20px',
-        borderRadius: '7px'
+const ExpenseForm = (props) => {
+  const [enteredTitle, setEnteredTitle] = useState('');
+  const [enteredAmount, setEnteredAmount] = useState('');
+  const [enteredDate, setEnteredDate] = useState('')
+  const titleChangeHandler = (event) => {
+    setEnteredTitle(event.target.value)
+    // console.log(event.target.value)
+   }
+  const amountChangeHandler = (event) => {
+   // setUserInpt({
+   //     ...userInput,
+   //     enteredAmount: event.target.value,
+   // });
+   setEnteredAmount(event.target.value)
+  }
+  const dateChangeHandler = (event) => {
+     // setUserInpt({
+    //     ...userInput,
+   //     enteredDate: event.target.value,
+  // });
+   setEnteredDate(event.target.value)
+  }
+  const formSubmissionHandler = (event) => {
+    event.preventDefault();
+    const expenseData = {
+      title: enteredTitle,
+      amount: enteredAmount,
+      date: new Date(enteredDate),
     }
-    const InputBox={
-      width: '80%',
-      height:'23px'
-    }
-  return (
-    <div>
-        <form style={FormStyle}>
-            <label>Expense title</label><br/>
-            <input style={InputBox} type="text" name="title" placeholder="Expense title"/><br/>
-            <label>Expense Amount</label><br/>
-            <input style={InputBox} type="number" name="amount" placeholder="Expense amount"/><br/>
-            <label>Date</label><br/>
-            <input style={InputBox} type="date" name="date" placeholder="Expense date"/><br/>
-            <button type="submit">Add</button>
-        </form>
+  props.onSaveExpenseData(expenseData);
+  setEnteredTitle('');
+  setEnteredAmount('');
+  setEnteredDate('');
+  };
+return (
+<div className="formlayout">
+<form onSubmit={formSubmissionHandler} className="formlayout">
+    <div className="formlayout">
+        <div className="title">
+            <label>Title:-</label>
+            <input type='text' value={enteredTitle} onChange={titleChangeHandler} />
+        </div>
+        <div className="amount">
+            <label>Amount:-</label>
+            <input type='number' value={enteredAmount} onChange={amountChangeHandler} />
+        </div>
+        <div className="date">
+            <label>Date:</label>
+            <input type='date' min="2019-01-01" max="2023-12-31" value={enteredDate} onChange={dateChangeHandler} />
+        </div>
     </div>
-  )
-}
-
-export default ExpenseForm
+    <div >
+        <button className="form_button" type="submit" >Add Expense</button>
+    </div>
+</form>
+</div>
+)
+};
+export default ExpenseForm;
