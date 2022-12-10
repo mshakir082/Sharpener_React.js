@@ -52,6 +52,9 @@ return (
             <input type='date' min="2019-01-01" max="2023-12-31" value={enteredDate} onChange={dateChangeHandler} />
         </div>
     </div>
+       <div>
+           <button className="form_button" type='button' onClick={props.onCancel}>Cancel</button>
+      </div>
     <div >
         <button className="form_button" type="submit" >Add Expense</button>
     </div>
